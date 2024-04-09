@@ -17,7 +17,7 @@ template = """
     Here are some examples of words in different dialects:
     - American: French Fries, cotton candy, apartment, garbage, \
         cookie, green thumb, parking lot, pants, windshield
-    - British: chips, candyfloss, flag, rubbish, biscuit, green fingers, \
+    - British: chips, candyfloss, flat, rubbish, biscuit, green fingers, \
         car park, trousers, windscreen
 
     Example Sentences from each dialect:
@@ -62,7 +62,7 @@ with col1:
     st.markdown("Re-write your text in different styles.")
 
 with col2:
-    st.write("Contact with [AI Accelera](https://aiaccelera.com) to build your AI Projects")
+    st.write("This is Kobus Kunz's first AI project")
 
 
 #Input OpenAI API Key
@@ -78,16 +78,6 @@ openai_api_key = get_openai_api_key()
 # Input
 st.markdown("## Enter the text you want to re-write")
 
-def get_draft():
-    draft_text = st.text_area(label="Text", label_visibility='collapsed', placeholder="Your Text...", key="draft_input")
-    return draft_text
-
-draft_input = get_draft()
-
-if len(draft_input.split(" ")) > 700:
-    st.write("Please enter a shorter text. The maximum length is 700 words.")
-    st.stop()
-
 # Prompt template tunning options
 col1, col2 = st.columns(2)
 with col1:
@@ -99,6 +89,18 @@ with col2:
     option_dialect = st.selectbox(
         'Which English Dialect would you like?',
         ('American', 'British'))
+    
+def get_draft():
+    draft_text = st.text_area(label="Text", label_visibility='collapsed', placeholder="Your Text...", key="draft_input")
+    return draft_text
+
+draft_input = get_draft()
+
+if len(draft_input.split(" ")) > 700:
+    st.write("Please enter a shorter text. The maximum length is 700 words.")
+    st.stop()
+
+
     
     
 # Output
