@@ -18,8 +18,6 @@ template = """
     - Sherlock Holmes: In the expansive repertoire of literary exploits, there resides a narrative that surpasses the pedestrian bounds of ordinary tales, weaving a tapestry of intrigue, adventure, and profound deduction. Set against the backdrop of a mesmerizing realm, this chronicle unfolds with meticulous precision, beckoning readers into a world where the commonplace yields to the extraordinary. Amidst its pages, characters of intricate depth and complexity traverse the treacherous pathways of destiny, their fates intricately intertwined in a delicate ballet of circumstance and choice. As the saga unfolds, themes of love, loss, and redemption emerge, resonating with universal truths that echo throughout time and space. Through the masterful arrangement of words and vivid imagery, the author deftly guides the reader on a journey of enlightenment, illuminating the intricacies of the human condition with a brilliance that captures the intellect. Thus, within the annals of literature, this tale stands as a testament to the enduring power of narrative to captivate, inspire, and elevate those who dare to embark upon its enigmatic odyssey.
     - Jar-Jar Binks: Meesa got dis here story for yousa, okeyday? Issa like, totally unlike anythin' yousa ever read befo'. Set in dis here magical place, it is, where every lil' ting jus' grabs yousa attention real good. Yousa got these characters, all real-like, dealin' with all sortsa crazy stuff life throws at them. Love, heartbreak, redemption, yousa name it - it's all dere, hittin' yousa right in da feels. And da way it's written, it's like da author's just takin' yousa by da hand and takin' yousa on dis wild, wild ride. It's one of dose stories that sticks wit yousa, long after yousa finished readin' it, remindin' yousa of all da ups and downs of bein' a Gungan. Mesa tellin' yousa, it's a real page-turner, okeyday!
 
-    Please start the redaction with a warm introduction. Add the introduction \
-        if you need to.
     
     Below is the draft text, tone, and pastiche:
     DRAFT: {draft}
@@ -80,7 +78,7 @@ with col1:
         ('Formal', 'Informal'))
     
 with col2:
-    option_dialect = st.selectbox(
+    option_pastiche = st.selectbox(
         'Which pastiche would you like?',
         ('Sherlock Holmes', 'Jar-Jar Binks'))
     
@@ -111,7 +109,7 @@ if draft_input:
 
     prompt_with_draft = prompt.format(
         tone=option_tone, 
-        dialect=option_dialect, 
+        pastiche=option_pastiche, 
         draft=draft_input
     )
 
