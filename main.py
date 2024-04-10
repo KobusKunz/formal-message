@@ -8,36 +8,30 @@ template = """
     Your goal is to:
     - Properly redact the draft text
     - Convert the draft text to a specified tone
-    - Convert the draft text to a specified dialect
+    - Convert the draft text to a specified pastiche
 
     Here are some examples different Tones:
-    - Formal: Greetings! OpenAI has announced that Sam Altman is rejoining the company as its Chief Executive Officer. After a period of five days of conversations, discussions, and deliberations, the decision to bring back Altman, who had been previously dismissed, has been made. We are delighted to welcome Sam back to OpenAI.
-    - Informal: Hey everyone, it's been a wild week! We've got some exciting news to share - Sam Altman is back at OpenAI, taking up the role of chief executive. After a bunch of intense talks, debates, and convincing, Altman is making his triumphant return to the AI startup he co-founded.  
+    - Formal: In the grand tapestry of literary imagination, there exists a tale that transcends the mundane confines of everyday existence, weaving threads of mystery, adventure, and profound insight. Set against the backdrop of an enchanting realm, this narrative unfurls with meticulous detail, inviting readers into a realm where the ordinary gives way to the extraordinary. Within these pages, characters of depth and complexity navigate the tumultuous waters of fate, their destinies intertwined in a delicate dance of circumstance and choice. As the story unfolds, themes of love, loss, and redemption emerge, resonating with universal truths that echo across time and space. Through masterful prose and evocative imagery, the author deftly guides the reader on a journey of discovery, illuminating the human condition with a brilliance that captivates the soul. Thus, in the annals of literature, this fictional saga stands as a testament to the enduring power of storytelling to inspire, enlighten, and enrich the lives of those who dare to embark upon its wondrous voyage.
+    - Informal: Picture this: there's this amazing story that's like nothing you've ever read before. It's set in this totally magical place, and every little detail just sucks you right in. You've got these characters who are super real, dealing with all kinds of crazy stuff that life throws at them. Love, heartbreak, redemption – it's all there, hitting you right in the feels. And the way it's written, it's like the author's just grabbing your hand and taking you on this wild ride. It's one of those stories that sticks with you long after you've finished reading, reminding you of all the ups and downs of being human. Man, talk about a page-turner!  
 
-    Here are some examples of words in different dialects:
-    - American: French Fries, cotton candy, apartment, garbage, \
-        cookie, green thumb, parking lot, pants, windshield
-    - British: chips, candyfloss, flat, rubbish, biscuit, green fingers, \
-        car park, trousers, windscreen
-
-    Example Sentences from each dialect:
-    - American: Greetings! OpenAI has announced that Sam Altman is rejoining the company as its Chief Executive Officer. After a period of five days of conversations, discussions, and deliberations, the decision to bring back Altman, who had been previously dismissed, has been made. We are delighted to welcome Sam back to OpenAI.
-    - British: On Wednesday, OpenAI, the esteemed artificial intelligence start-up, announced that Sam Altman would be returning as its Chief Executive Officer. This decisive move follows five days of deliberation, discourse and persuasion, after Altman's abrupt departure from the company which he had co-established.
+    Example Sentences from each pastiche:
+    - Sherlock Holmes: In the expansive repertoire of literary exploits, there resides a narrative that surpasses the pedestrian bounds of ordinary tales, weaving a tapestry of intrigue, adventure, and profound deduction. Set against the backdrop of a mesmerizing realm, this chronicle unfolds with meticulous precision, beckoning readers into a world where the commonplace yields to the extraordinary. Amidst its pages, characters of intricate depth and complexity traverse the treacherous pathways of destiny, their fates intricately intertwined in a delicate ballet of circumstance and choice. As the saga unfolds, themes of love, loss, and redemption emerge, resonating with universal truths that echo throughout time and space. Through the masterful arrangement of words and vivid imagery, the author deftly guides the reader on a journey of enlightenment, illuminating the intricacies of the human condition with a brilliance that captures the intellect. Thus, within the annals of literature, this tale stands as a testament to the enduring power of narrative to captivate, inspire, and elevate those who dare to embark upon its enigmatic odyssey.
+    - Jar-Jar Binks: Meesa got dis here story for yousa, okeyday? Issa like, totally unlike anythin' yousa ever read befo'. Set in dis here magical place, it is, where every lil' ting jus' grabs yousa attention real good. Yousa got these characters, all real-like, dealin' with all sortsa crazy stuff life throws at them. Love, heartbreak, redemption, yousa name it - it's all dere, hittin' yousa right in da feels. And da way it's written, it's like da author's just takin' yousa by da hand and takin' yousa on dis wild, wild ride. It's one of dose stories that sticks wit yousa, long after yousa finished readin' it, remindin' yousa of all da ups and downs of bein' a Gungan. Mesa tellin' yousa, it's a real page-turner, okeyday!
 
     Please start the redaction with a warm introduction. Add the introduction \
         if you need to.
     
-    Below is the draft text, tone, and dialect:
+    Below is the draft text, tone, and pastiche:
     DRAFT: {draft}
     TONE: {tone}
-    DIALECT: {dialect}
+    PASTICHE: {pastiche}
 
-    YOUR {dialect} RESPONSE:
+    YOUR {pastiche} RESPONSE:
 """
 
 #PromptTemplate variables definition
 prompt = PromptTemplate(
-    input_variables=["tone", "dialect", "draft"],
+    input_variables=["tone", "pastiche", "draft"],
     template=template,
 )
 
@@ -59,7 +53,7 @@ st.header("Re-write your text")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("Re-write your text in different styles.")
+    st.markdown("Re-write your text as different characters.")
 
 with col2:
     st.write("This is Kobus Kunz's first AI project")
@@ -87,8 +81,8 @@ with col1:
     
 with col2:
     option_dialect = st.selectbox(
-        'Which English Dialect would you like?',
-        ('American', 'British'))
+        'Which pastiche would you like?',
+        ('Sherlock Holmes', 'Jar-Jar Binks'))
     
 def get_draft():
     draft_text = st.text_area(label="Text", label_visibility='collapsed', placeholder="Your Text...", key="draft_input")
